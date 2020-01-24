@@ -1,27 +1,17 @@
 package es.upm.grise.profundizacion2019.ex3;
 
 import java.time.LocalDateTime;
+import java.util.Random;
 
-import org.junit.Before;
 import org.junit.Test;
 
 import static org.junit.Assert.assertEquals;
+import static org.mockito.Mockito.anyLong;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
 
 public class smokeTest {
-
-	// La instancia de la clase MyClass a testear
-	MyClass my;
-
-	@Before
-	public void setUp() {
-		my = new MyClass();
-	}
-
-	@Test
-	public void smoleTest() {
-		long SECONDS = 60;
-		my.nextTime(SECONDS);
-	}
 
 	@Test
 	public void pruebaDeEstadoTime() {
@@ -31,5 +21,13 @@ public class smokeTest {
 		final Time time = new Time(tiempoActual);
 		assertEquals(tiempoFuturo, time.getFutureTime(diferenciaDeTiempo));
 	}
-	
+
+	@Test
+	public void pruebaDeInteraccionMyClass() {
+		final Time time = mock(Time.class);
+		final MyClass my = new MyClass(time);
+		my.nextTime(new Random().nextLong());
+		verify(time, times(1)).getFutureTime(anyLong());
+	}
+
 }
