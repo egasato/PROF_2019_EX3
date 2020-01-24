@@ -3,14 +3,14 @@ package es.upm.grise.profundizacion2019.ex3;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-public final class Time {
+public class Time {
 
 	// El formato del tiempo y fecha es constante
 	private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-	
+
 	// La instancia usada para calcular la diferencia de tiempo
 	private LocalDateTime time;
-	
+
 	// Un constructor que inyecta la dependencia
 	public Time(final LocalDateTime time) {
 		this.time = time;
